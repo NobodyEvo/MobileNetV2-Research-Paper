@@ -9,16 +9,16 @@ import numpy as np
 
 # 1. Config
 TEST_DIR = r"Final_Split_Sugarcane\test"
-MODEL_PATH = 'sugarcane_mobilenet_448.pth' # <--- UPDATED FILENAME
-IMG_SIZE = 448                              # <--- UPDATED RESOLUTION
+MODEL_PATH = 'sugarcane_mobilenet_448.pth' 
+IMG_SIZE = 448                              
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# 2. PLOT TRAINING HISTORY (Data from your NEW 448px 30-Epoch Run)
+# 2. PLOT TRAINING HISTORY 
 print("Generating Training Graphs...")
 
 epochs = range(1, 31)
 
-# UPDATED DATA: Extracted from your latest 448px training log
+# UPDATED DATA
 train_acc = [
     0.5602, 0.7130, 0.7434, 0.7743, 0.7820, 0.8195, 0.7980, 0.7930, 0.8206, 0.8135,
     0.8184, 0.8317, 0.8460, 0.8195, 0.8251, 0.8389, 0.8460, 0.8372, 0.8394, 0.8355,
@@ -65,7 +65,7 @@ test_transforms = transforms.Compose([
 
 try:
     test_dataset = datasets.ImageFolder(TEST_DIR, transform=test_transforms)
-    # Reduced batch size for testing too, just to be safe with VRAM
+    # Reduced batch size for testing too
     test_loader = DataLoader(test_dataset, batch_size=16, shuffle=False)
     class_names = test_dataset.classes
     print(f"Found {len(test_dataset)} test images.")
@@ -109,4 +109,5 @@ plt.xlabel('Predicted')
 plt.tight_layout()
 plt.savefig('sugarcane_confusion_matrix.png')
 print("Saved Matrix: sugarcane_confusion_matrix.png")
+
 plt.show()
