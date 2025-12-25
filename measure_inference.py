@@ -6,12 +6,12 @@ import os
 
 # CONFIGURATION
 # ---------------------------------------------------------
-# 1. SET THE IMAGE SIZE (Match the model you are testing: 224)
+# 1. SET THE IMAGE SIZE 
 IMG_SIZE = 224
 
 # 2. SET THE EXACT PATH TO YOUR MODEL FILE
 MODEL_FOLDER = r"C:\Project\Research paper\Sugercane\Paper224"
-# Based on your previous logs, the 224px model was named 'sugarcane_mobilenet.pth'
+
 MODEL_FILENAME = "sugarcane_mobilenet.pth" 
 MODEL_PATH = os.path.join(MODEL_FOLDER, MODEL_FILENAME)
 
@@ -38,7 +38,7 @@ def load_model():
         model.load_state_dict(state_dict)
     except Exception as e:
         print(f"Warning: Direct load failed. Trying full model load... Error: {e}")
-        # Fallback if you saved the entire model instead of state_dict
+        
         model = torch.load(MODEL_PATH, map_location=DEVICE)
         
     model.to(DEVICE)
@@ -90,4 +90,5 @@ if __name__ == "__main__":
         model = load_model()
         measure_speed(model)
     except Exception as e:
+
         print(f"\n CRITICAL ERROR: {e}")
