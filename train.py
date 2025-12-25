@@ -110,8 +110,6 @@ for epoch in range(EPOCHS):
     epoch_loss = running_loss / len(train_dataset)
     epoch_acc = correct / total
     
-    # Optional: Print Validation Accuracy every epoch to track progress
-    # (Kept simple here for speed, but you will see Training Accuracy climb)
     print(f"Epoch {epoch+1}/{EPOCHS} | Loss: {epoch_loss:.4f} | Acc: {epoch_acc:.4f}")
 
 total_time = time.time() - start_time
@@ -119,4 +117,5 @@ print(f"\nTraining Complete in {total_time//60:.0f}m {total_time%60:.0f}s")
 
 # 9. Save Model
 torch.save(model.state_dict(), 'sugarcane_mobilenet_448.pth') # Renamed slightly to avoid overwriting old one
+
 print("Model saved as 'sugarcane_mobilenet_448.pth'")
